@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    corresponding_sleep_time_not_recorded: 'corresponding sleep time not recorded'
