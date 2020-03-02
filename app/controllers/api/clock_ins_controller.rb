@@ -25,7 +25,7 @@ module Api
     end
 
     def clocked_in_times
-      @clock_ins = @user.clock_ins
+      @clock_ins = @user.clock_ins.where.not(clocked_in_time: nil)
       json = @clock_ins.as_json
       json_response(json)
     end
