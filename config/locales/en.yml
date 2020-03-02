@@ -32,3 +32,5 @@
 en:
   errors:
     corresponding_sleep_time_not_recorded: 'corresponding sleep time not recorded'
+    relationship_already_exists: 'relationship already exists'
+    relationship_not_found: 'relationship not found'
