@@ -67,11 +67,23 @@ describe 'clock_ins', type: :request do
   # required params: user_id
   describe 'GET /api/clocked_in_times' do
     let(:execute) { get '/api/clocked_in_times', params: params }
-    let!(:clock_ins) do
+    # completed clock_ins
+    let!(:completed_clock_ins) do
       create_list(
           :clock_in,
           10,
           { user: user }
+      )
+    end
+    # incompleted clock_ins
+    let!(:incompleted_clock_ins) do
+      create_list(
+          :clock_in,
+          10,
+          {
+            user: user,
+            clocked_in_time: nil
+          }
       )
     end
     context 'negative tests' do
@@ -83,7 +95,7 @@ describe 'clock_ins', type: :request do
       end
       before { execute }
       it 'should return correct json' do
-        expected_json = clock_ins.as_json
+        expected_json = completed_clock_ins.as_json
         json = JSON.parse(response.body)
         expect(json).to eq(expected_json)
       end
@@ -99,11 +111,20 @@ describe 'clock_ins', type: :request do
     before do
       friends.each do |friend|
         Relationship.create(follower: user, followed: friend)
+        # completed clock_ins
         create_list(
             :clock_in,
             10,
             { user: friend,
-              clocked_in_time: rand(1..10.0).round(2),
+              created_at: rand((Time.now - 10.days)..Time.now)
+            }
+        )
+        # incompleted clock_ins
+        create_list(
+            :clock_in,
+            10,
+            { user: friend,
+              clocked_in_time: nil,
               created_at: rand((Time.now - 10.days)..Time.now)
             }
         )
