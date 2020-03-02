@@ -5,8 +5,8 @@ describe 'clock_ins', type: :request do
   let!(:user) { create :user }
   # to track user's sleep time
   # required params: user_id
-  describe 'POST /api/sleep' do
-    let(:execute) { post '/api/sleep', params: params }
+  describe 'POST /api/v1/sleep' do
+    let(:execute) { post '/api/v1/sleep', params: params }
     context 'negative tests' do
       include_examples 'invalid params user_id'
     end
@@ -27,8 +27,8 @@ describe 'clock_ins', type: :request do
 
   # to track user's wakeup time
   # required params: user_id
-  describe 'POST /api/wake_up' do
-    let(:execute) { post '/api/wake_up', params: params }
+  describe 'POST /api/v1/wake_up' do
+    let(:execute) { post '/api/v1/wake_up', params: params }
     context 'negative tests' do
       include_examples 'invalid params user_id'
 
@@ -65,8 +65,8 @@ describe 'clock_ins', type: :request do
 
   # to retrieve user's all fully recorded clock_in
   # required params: user_id
-  describe 'GET /api/clocked_in_times' do
-    let(:execute) { get '/api/clocked_in_times', params: params }
+  describe 'GET /api/v1/clocked_in_times' do
+    let(:execute) { get '/api/v1/clocked_in_times', params: params }
     # completed clock_ins
     let!(:completed_clock_ins) do
       create_list(
@@ -105,8 +105,8 @@ describe 'clock_ins', type: :request do
 
   # to retrieve all following users' sleep time data in last 7 days, ordered descendingly by total sleep time
   # required params: user_id
-  describe 'GET /api/friends_sleep_time' do
-    let(:execute) { get '/api/friends_sleep_time', params: params }
+  describe 'GET /api/v1/friends_sleep_time' do
+    let(:execute) { get '/api/v1/friends_sleep_time', params: params }
     let(:friends) { create_list(:user, 10) }
     before do
       friends.each do |friend|

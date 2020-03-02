@@ -7,8 +7,8 @@ describe 'relationship', type: :request do
 
   # to follow an user
   # required params: follower_id, followed_id
-  describe 'POST /api/follow' do
-    let(:execute) { post '/api/follow', params: params }
+  describe 'POST /api/v1/follow' do
+    let(:execute) { post '/api/v1/follow', params: params }
     context 'negative tests' do
       include_examples 'invalid params follower_id or followed_id'
       context 'the relationship already exists' do
@@ -38,8 +38,8 @@ describe 'relationship', type: :request do
 
   # to unfollow an user
   # required params: follower_id, followed_id
-  describe 'POST /api/unfollow' do
-    let(:execute) { post '/api/unfollow', params: params }
+  describe 'POST /api/v1/unfollow' do
+    let(:execute) { post '/api/v1/unfollow', params: params }
     context 'negative tests' do
       include_examples 'invalid params follower_id or followed_id'
       context 'the relationship not found' do

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module Api
+module Api::V1
   class ClockInsController < ApplicationController
     include Response
     include ExceptionHandler
